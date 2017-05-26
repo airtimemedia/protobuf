@@ -86,10 +86,21 @@ endif()
 
 add_definitions(-DGOOGLE_PROTOBUF_CMAKE_BUILD)
 
-find_package(Threads REQUIRED)
-if (CMAKE_USE_PTHREADS_INIT)
+# airtime : start
+#find_package(Threads REQUIRED)
+#if (CMAKE_USE_PTHREADS_INIT)
+if (ANDROID)
+  # find_package(Threads) fails for android since the NDK only includes the
+  # header, but not a separate libpthread which cmake expects
   add_definitions(-DHAVE_PTHREAD)
-endif (CMAKE_USE_PTHREADS_INIT)
+else (ANDROID)
+  find_package(Threads REQUIRED)
+  if (CMAKE_USE_PTHREADS_INIT)
+    add_definitions(-DHAVE_PTHREAD)
+  endif (CMAKE_USE_PTHREADS_INIT)
+endif (ANDROID)
+#endif (CMAKE_USE_PTHREADS_INIT)
+# airtime : end
 
 set(_protobuf_FIND_ZLIB)
 if (protobuf_WITH_ZLIB)
