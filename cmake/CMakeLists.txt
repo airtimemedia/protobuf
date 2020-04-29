@@ -86,9 +86,6 @@ endif()
 
 add_definitions(-DGOOGLE_PROTOBUF_CMAKE_BUILD)
 
-message("JDW: protobuf cmake osx arch: ${CMAKE_OSX_ARCHITECTURES}")
-message("JDW: protobuf cmake system name: ${CMAKE_SYSTEM_NAME}")
-
 if (ANDROID)
   # find_package(Threads) fails for android since the NDK only includes the
   # header, but not a separate libpthread which cmake expects
