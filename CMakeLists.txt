@@ -7,14 +7,15 @@ set(protobuf_BUILD_TESTS OFF CACHE INTERNAL "")
 if (ANDROID OR IOS)
   set(BUILD_PROTOC_EXE OFF CACHE INTERNAL "")
 endif()
+#add_subdirectory(${at_media_deps_dir}/protobuf/cmake ${at_media_deps_dir}/protobuf/cmake)
+message("--SUMIT pROTOBUF bINARY  ${CMAKE_BINARY_DIR}")
 add_subdirectory(${at_media_deps_dir}/protobuf/cmake)
 
 # On Clang 9 (Starting Android NDK r21b) this is nesserary to compile.
 # (Error later seen on Xcode 12 too).
 target_compile_options(libprotobuf PRIVATE -Wno-enum-compare-switch)
 
-# On iOS and Android we need to make sure we use the host version of 
-protoc to generate files
+# On iOS and Android we need to make sure we use the host version of protoc to generate files
 set(PROTOBUF_PROTOC_EXECUTABLE "")
 if (IOS)
   set(PROTOBUF_PROTOC_EXECUTABLE 
