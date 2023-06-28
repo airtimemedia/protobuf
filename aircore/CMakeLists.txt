@@ -7,7 +7,7 @@ set(protobuf_BUILD_TESTS OFF CACHE INTERNAL "")
 if (ANDROID OR IOS)
   set(BUILD_PROTOC_EXE OFF CACHE INTERNAL "")
 endif()
-add_subdirectory(${at_media_deps_dir}/protobuf/src/cmake)
+add_subdirectory(${at_media_deps_dir}/protobuf/cmake)
 
 # On Clang 9 (Starting Android NDK r21b) this is nesserary to compile.
 # (Error later seen on Xcode 12 too).
@@ -27,7 +27,7 @@ else()
 endif()
 
 # We don't build protoc for android or ios, but we call 
-set_target_properties on
+# set_target_properties on
 # the protoc target below, so we need to create a stub target
 if (NOT TARGET protoc)
   add_custom_target(protoc)
