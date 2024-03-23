@@ -1,9 +1,5 @@
 # build libprotobuf
 
-# TODO(igork) - see if we have to have this (YUBA-15)
-cmake_policy(SET CMP0079 NEW)
-# end TODO(igork)
-
 set(INCLUDE_LIBPROTOBUF 1)
 
 set(protobuf_WITH_ZLIB OFF CACHE INTERNAL "")
