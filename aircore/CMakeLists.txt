@@ -16,6 +16,11 @@ add_subdirectory_once(${at_media_deps_dir}/protobuf/cmake ${CMAKE_BINARY_DIR}/pr
 # (Error later seen on Xcode 12 too).
 target_compile_options(libprotobuf PRIVATE -Wno-enum-compare-switch)
 
+# We don't build libprotoc for android or ios
+if (TARGET libprotoc)
+  target_compile_options(libprotoc PRIVATE -Wno-enum-compare-switch)
+endif()
+
 # On iOS and Android we need to make sure we use the host version of protoc to generate files
 set(PROTOBUF_PROTOC_EXECUTABLE "")
 if (IOS)
