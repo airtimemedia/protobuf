@@ -1,6 +1,7 @@
 # build libprotobuf
 cmake_policy(SET CMP0079 NEW)
 cmake_policy(SET CMP0077 NEW)
+cmake_policy(SET CMP0156 NEW)  # CAR-2521 Use CMP0156 to handle duplicate libraries in link lines
 
 set(protobuf_ABSL_PROVIDER "none" CACHE STRING "")
 add_subdirectory_once(${at_media_deps_dir}/abseil-cpp ${CMAKE_BINARY_DIR}/abseil-cpp)
