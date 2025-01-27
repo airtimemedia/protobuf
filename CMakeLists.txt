@@ -150,6 +150,7 @@ else()
 endif()
 file(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/cmaketest.map)
 
+set(CMAKE_THREAD_LIBS_INIT "-lpthread")
 find_package(Threads REQUIRED)
 
 # We can install dependencies from submodules if we're running
