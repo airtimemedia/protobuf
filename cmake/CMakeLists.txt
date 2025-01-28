@@ -91,6 +91,7 @@ if (ANDROID)
   # header, but not a separate libpthread which cmake expects
   add_definitions(-DHAVE_PTHREAD)
 else (ANDROID)
+  set(CMAKE_THREAD_LIBS_INIT "-lpthread")
   find_package(Threads REQUIRED)
   if (CMAKE_USE_PTHREADS_INIT)
     add_definitions(-DHAVE_PTHREAD)
