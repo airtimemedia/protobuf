@@ -15,6 +15,20 @@ if (ANDROID OR IOS)
 endif()
 add_subdirectory(${at_media_deps_dir}/protobuf ${CMAKE_BINARY_DIR}/protobuf/src/cmake)
 
+if (APPLE)
+  foreach(protobuf_target libprotobuf libprotobuf-lite)
+    if (TARGET ${protobuf_target})
+      foreach(link_property LINK_LIBRARIES INTERFACE_LINK_LIBRARIES)
+        get_target_property(protobuf_link_libraries ${protobuf_target} ${link_property})
+        if (protobuf_link_libraries)
+          list(REMOVE_ITEM protobuf_link_libraries atomic "$<LINK_ONLY:atomic>")
+          set_target_properties(${protobuf_target} PROPERTIES ${link_property} "${protobuf_link_libraries}")
+        endif()
+      endforeach()
+    endif()
+  endforeach()
+endif()
+
 # On Clang 9 (Starting Android NDK r21b) this is nesserary to compile.
 # (Error later seen on Xcode 12 too).
 target_compile_options(libprotobuf PRIVATE -Wno-enum-compare-switch)
