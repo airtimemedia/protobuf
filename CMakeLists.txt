@@ -201,15 +201,6 @@ if (NOT MSVC)
   set(CMAKE_REQUIRED_FLAGS ${OLD_CMAKE_REQUIRED_FLAGS})
 endif (NOT MSVC)
 
-# airtime: start (CAR-2615)
-# Apple platforms provide the required atomics through the toolchain/runtime.
-# The iOS cross-compile check can fail and incorrectly add -latomic, which is
-# not available from Apple SDKs.
-if (APPLE)
-  set(protobuf_LINK_LIBATOMIC false)
-endif (APPLE)
-# airtime: end
-
 if (protobuf_BUILD_SHARED_LIBS)
   set(protobuf_SHARED_OR_STATIC "SHARED")
 else (protobuf_BUILD_SHARED_LIBS)
